@@ -11,7 +11,7 @@ class PhylaxSignupUI(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("PHYLAX Firewall Security")
-        self.setFixedSize(900, 500)
+        self.setFixedSize(1200, 700)
         self.init_ui()
 
     def init_ui(self):
@@ -22,13 +22,13 @@ class PhylaxSignupUI(QWidget):
 
         # --- Left Logo Panel ---
         logo_panel = QFrame()
-        logo_panel.setFixedWidth(400)
-        logo_panel.setStyleSheet("background-color: #1C2833;")
+        logo_panel.setFixedWidth(500)
+        logo_panel.setStyleSheet("background-color: #2C3E50;")
         logo_layout = QVBoxLayout(logo_panel)
         logo_layout.setContentsMargins(0, 0, 0, 0)
 
         logo_label = QLabel()
-        pixmap = QPixmap("LOGO.jpeg")
+        pixmap = QPixmap("logo.png")
         if pixmap.isNull():
             logo_label.setText("LOGO NOT FOUND")
             logo_label.setStyleSheet("color: white; font-size: 20px;")
@@ -46,13 +46,13 @@ class PhylaxSignupUI(QWidget):
         form_layout.setSpacing(10)
 
         # Centered heading
-        heading = QLabel("Signup")
-        heading.setFont(QFont("Arial", 22, QFont.Bold))
-        heading.setAlignment(Qt.AlignCenter)
-        heading.setStyleSheet("color: #2C3E50;")
+        self.heading = QLabel("SIGNUP", self)
+        self.heading.setFont(QFont("Arial", 40, QFont.Bold))
+        self.heading.setStyleSheet("QLabel { color: #2C3E50; }")
+        self.heading.setAlignment(Qt.AlignHCenter)
 
         # Input fields
-        self.fullname = QLineEdit()
+        self.fullname = QLineEdit(self)
         self.fullname.setPlaceholderText("Full Name")
         self.password = QLineEdit()
         self.password.setPlaceholderText("Password")
@@ -93,13 +93,18 @@ class PhylaxSignupUI(QWidget):
         """)
 
         # Add widgets to form layout
-        form_layout.addWidget(heading)
-        form_layout.addSpacing(20)
+
+        form_layout.addWidget(self.heading)
         form_layout.addWidget(self.fullname)
+        form_layout.addWidget(self.fullname, alignment=Qt.AlignTop)
         form_layout.addWidget(self.password)
+        form_layout.addWidget(self.password, alignment=Qt.AlignTop)
         form_layout.addWidget(self.email)
-        form_layout.addSpacing(15)
+        form_layout.addWidget(self.email, alignment=Qt.AlignTop)
         form_layout.addWidget(self.signup_btn)
+
+
+
 
         # Combine panels
         main_layout.addWidget(logo_panel)
